@@ -2,10 +2,9 @@
  * Created by djp4830 on 9/7/17.
  */
 public enum TrafficLight {
-
-    Go("Green", 6000, "\u001B[32m"),
-    Slow("Yellow", 2000, "\u001B[33m"),
-    Stop("Red", 8000, "\u001B[31m");
+    Stop("Red", 8, "\u001B[31m"),
+    Go("Green", 6, "\u001B[32m"),
+    Slow("Yellow", 2, "\u001B[33m");
 
     private String color;
     private int duration;
@@ -27,4 +26,12 @@ public enum TrafficLight {
         return textColor;
     }
 
+    public TrafficLight getNextTrafficLight(TrafficLight e)
+    {
+        int index = e.ordinal();
+        int nextIndex = index + 1;
+        TrafficLight[] trafficLights = TrafficLight.values();
+        nextIndex %= trafficLights.length;
+        return trafficLights[nextIndex];
+    }
 }
